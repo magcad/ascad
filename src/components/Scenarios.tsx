@@ -7,7 +7,7 @@ import { Scenario } from '../models/scenario';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      margin: '1rem',
+      margin: theme.spacing(1),
     },
   }),
 );

@@ -14,9 +14,9 @@ const useStyles = makeStyles((theme: Theme) =>
     paper: {
       width: '50%',
       minWidth: '50rem',
-      padding: '2rem',
+      padding: theme.spacing(2),
     },
-    w100: {
+    steps: {
       width: '90%',
     },
     contentContainer: {
@@ -114,7 +114,7 @@ function App() {
             Simplify and Convert
           </Typography>
           <Stepper
-            className={classes.w100}
+            className={classes.steps}
             activeStep={activeStep}
             alternativeLabel
           >

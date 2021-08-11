@@ -7,14 +7,14 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
-      margin: '1rem',
-      padding: '1rem',
-      border: '3px dashed #eeeeee',
-      backgroundColor: '#fafafa',
-      color: '#bdbdbd',
-      transition: 'border .24s ease-in-out',
-      fontSize: '16pt',
-      cursor: 'pointer',
+      margin: theme.spacing(1),
+      padding: theme.spacing(1),
+      border: "4px dashed #eeeeee",
+      backgroundColor: "#fafafa",
+      color: "#bdbdbd",
+      transition: "border .24s ease-in-out",
+      fontSize: "16pt",
+      cursor: "pointer",
     },
   }),
 );
