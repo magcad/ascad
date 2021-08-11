@@ -1,7 +1,7 @@
 import { createStyles, FormControl, FormControlLabel, FormLabel, Grid, makeStyles, Radio, RadioGroup, Theme } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import { CONSTANTS } from '../constants';
+import axiosInstance from '../axiosInstance';
 import { Scenario } from '../models/scenario';
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -22,13 +22,9 @@ const Scenarios: React.FC<ScenariosProps> = ({
   const [selectedScenario, setSelectedScenario] = useState<Scenario | null>(null);
 
   useEffect(() => {
-    fetch(CONSTANTS.API_BASE_URL + '/scenarios', {
-      headers: {
-        'Content-Type': 'application/json',
-      }
-    }).then(async (response) => {
+    axiosInstance.get('/scenarios').then(async (response) => {
       if (response.status === 200) {
-        const scenarioListJson = await response.json() as Scenario[];
+        const scenarioListJson = response.data as Scenario[];
         setSenarios(scenarioListJson);
         if (scenarioListJson.length > 0) {
           updateScenario(scenarioListJson[0]);
