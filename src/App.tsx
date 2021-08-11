@@ -77,8 +77,8 @@ function App() {
         return <div>
             <FileDropper onFileUpload={handleFileUpload} />
             <ul>
-              {files !== null && files.map(file => 
-                <li>{file.name}</li>  
+              {files !== null && files.map((file, i) => 
+                <li key={i}>{file.name}</li>  
               )}
             </ul>
           </div>
@@ -97,7 +97,7 @@ function App() {
       spacing={0}
       direction="column"
       alignItems="center"
-      justify="center"
+      justifyContent="center"
       style={{ minHeight: '100vh' }}
     >
       <Paper className={classes.paper}>
@@ -105,7 +105,7 @@ function App() {
           container
           direction="column"
           alignItems="center"
-          justify="center"
+          justifyContent="center"
         >
           <Typography variant="h4">
             ASCAD

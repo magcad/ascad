@@ -1,5 +1,6 @@
 import { createStyles, FormControl, FormControlLabel, FormLabel, Grid, makeStyles, Radio, RadioGroup, Theme } from '@material-ui/core';
 import React, { useState } from 'react';
+import { useCallback } from 'react';
 import { useEffect } from 'react';
 import axiosInstance from '../axiosInstance';
 import { Scenario } from '../models/scenario';
@@ -20,7 +21,14 @@ const Scenarios: React.FC<ScenariosProps> = ({
   const classes = useStyles();
   const [scenarios, setSenarios] = useState<Scenario[] | null>(null);
   const [selectedScenario, setSelectedScenario] = useState<Scenario | null>(null);
-
+  
+  const updateScenario = useCallback((scenario: Scenario | null) => {
+    setSelectedScenario(scenario);
+    if (scenario !== null) {
+      onSelectedScenarioChange(scenario);
+    }
+  }, []);
+  
   useEffect(() => {
     axiosInstance.get('/scenarios').then(async (response) => {
       if (response.status === 200) {
@@ -33,14 +41,7 @@ const Scenarios: React.FC<ScenariosProps> = ({
         setSenarios(null);
       }
     })
-  }, []);
-
-  const updateScenario = (scenario: Scenario | null) => {
-    setSelectedScenario(scenario);
-    if (scenario !== null) {
-      onSelectedScenarioChange(scenario);
-    }
-  }
+  }, [updateScenario]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedScenarioID = Number.parseInt((event.target as HTMLInputElement).value);
