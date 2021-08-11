@@ -3,6 +3,7 @@ import './App.css';
 import { Button, createStyles, Grid, Paper, makeStyles, Step, StepLabel, Stepper, Theme, Typography } from '@material-ui/core';
 import FileDropper from './components/FileDropper';
 import Scenarios from './components/Scenarios';
+import { Scenario } from './models/scenario';
 
 const getSteps = (): string[] => {
   return ['Select CAD file(s)', 'Choose scenario', 'Get your files'];
@@ -36,6 +37,7 @@ function App() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [files, setFiles] = useState<File[] | null>(null);
+  const [selectedScenario, setSelectedScenario] = useState<Scenario | null>(null);
   const steps = getSteps();
 
   const handleNext = () => {
@@ -51,16 +53,19 @@ function App() {
   }
 
   const handleFileUpload = (uploadedFiles: File[]) => {
-    console.log('files set!');
     setFiles(uploadedFiles);
   }
 
+  const handleSelectedScenarioChange = (scenario: Scenario) => {
+    setSelectedScenario(scenario);
+  }
+
   const canProceedToNextStep = (): boolean => {
-    console.log('Can proceed to next step');
-    console.log({activeStep, files});
     switch (activeStep) {
       case 0:
         return (files !== null && files.length > 0);
+      case 1:
+        return selectedScenario !== null;
       default:
         return true;
     }
@@ -78,7 +83,7 @@ function App() {
             </ul>
           </div>
       case 1:
-        return <Scenarios />
+        return <Scenarios onSelectedScenarioChange={handleSelectedScenarioChange} />
       case 2:
         return <div>download files</div>;
       default:

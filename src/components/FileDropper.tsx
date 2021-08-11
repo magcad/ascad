@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme: Theme) =>
       color: '#bdbdbd',
       transition: 'border .24s ease-in-out',
       fontSize: '16pt',
+      cursor: 'pointer',
     },
   }),
 );
@@ -26,12 +27,7 @@ const FileDropper: React.FC<FileDropperProps> = ({
   const classes = useStyles();
   
   const onDrop = useCallback((files) => {
-    if (!Array.isArray(files)) {
-      files = [files];
-    }
-    if (onFileUpload !== undefined) {
-      onFileUpload(files);
-    } 
+    onFileUpload?.apply(null, [files]);
   }, [onFileUpload]);
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });

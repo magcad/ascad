@@ -12,10 +12,10 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 type ScenariosProps = {
-
+  onSelectedScenarioChange: (scenario: Scenario) => void;
 }
 const Scenarios: React.FC<ScenariosProps> = ({
-
+  onSelectedScenarioChange,
 }: ScenariosProps) => {
   const classes = useStyles();
   const [scenarios, setSenarios] = useState<Scenario[] | null>(null);
@@ -31,7 +31,7 @@ const Scenarios: React.FC<ScenariosProps> = ({
         const scenarioListJson = await response.json() as Scenario[];
         setSenarios(scenarioListJson);
         if (scenarioListJson.length > 0) {
-          setSelectedScenario(scenarioListJson[0]);
+          updateScenario(scenarioListJson[0]);
         }
       } else {
         setSenarios(null);
@@ -39,9 +39,16 @@ const Scenarios: React.FC<ScenariosProps> = ({
     })
   }, []);
 
+  const updateScenario = (scenario: Scenario | null) => {
+    setSelectedScenario(scenario);
+    if (scenario !== null) {
+      onSelectedScenarioChange(scenario);
+    }
+  }
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedScenarioID = Number.parseInt((event.target as HTMLInputElement).value);
-    setSelectedScenario(scenarios?.find((scenario) => scenario.id === selectedScenarioID) ?? null);
+    updateScenario(scenarios?.find((scenario) => scenario.id === selectedScenarioID) ?? null);
   }
 
   return (
@@ -58,7 +65,7 @@ const Scenarios: React.FC<ScenariosProps> = ({
           </FormLabel>
           <RadioGroup 
             name="scenario" 
-            value={selectedScenario?.id ?? 0} 
+            value={selectedScenario?.id ?? -1} 
             onChange={handleChange}
           >
             {scenarios !== null && scenarios.map((scenario) => 
