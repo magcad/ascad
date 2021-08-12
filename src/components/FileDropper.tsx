@@ -6,7 +6,7 @@ type FileDropperProps = {
 }
 const FileDropper: React.FC<FileDropperProps> = ({
   onFileUpload
-}: FileDropperProps) => {
+}) => {
   
   const handleChange = (files: File[]) => {
     onFileUpload?.apply(null, [files]);

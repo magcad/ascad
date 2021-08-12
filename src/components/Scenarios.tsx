@@ -1,4 +1,4 @@
-import { createStyles, FormControl, FormControlLabel, FormLabel, Grid, makeStyles, Radio, RadioGroup, Theme } from '@material-ui/core';
+import { CircularProgress, createStyles, FormControl, FormControlLabel, FormLabel, Grid, makeStyles, Radio, RadioGroup, Theme, Typography } from '@material-ui/core';
 import React, { useState } from 'react';
 import { useCallback } from 'react';
 import { useEffect } from 'react';
@@ -17,7 +17,7 @@ type ScenariosProps = {
 }
 const Scenarios: React.FC<ScenariosProps> = ({
   onSelectedScenarioChange,
-}: ScenariosProps) => {
+}) => {
   const classes = useStyles();
   const [scenarios, setSenarios] = useState<Scenario[] | null>(null);
   const [selectedScenario, setSelectedScenario] = useState<Scenario | null>(null);
@@ -56,25 +56,34 @@ const Scenarios: React.FC<ScenariosProps> = ({
         justifyContent="center"
         alignItems="center"
       >
-        <FormControl component="fieldset">
-          <FormLabel component="legend">
-            Scenarios
-          </FormLabel>
-          <RadioGroup 
-            name="scenario" 
-            value={selectedScenario?.id ?? -1} 
-            onChange={handleChange}
-          >
-            {scenarios !== null && scenarios.map((scenario) => 
-              <FormControlLabel
-                key={scenario.id}
-                value={scenario.id}
-                control={<Radio color="primary" />}
-                label={scenario.name}
-              />
-            )}
-          </RadioGroup>
-        </FormControl>
+        {scenarios === null ?
+          <>
+            <CircularProgress />
+            <Typography>
+              Loading scenarios...
+            </Typography>
+          </>
+          :
+          <FormControl component="fieldset">
+            <FormLabel component="legend">
+              Scenarios
+            </FormLabel>
+            <RadioGroup 
+              name="scenario" 
+              value={selectedScenario?.id ?? -1} 
+              onChange={handleChange}
+            >
+              {scenarios !== null && scenarios.map((scenario) => 
+                <FormControlLabel
+                  key={scenario.id}
+                  value={scenario.id}
+                  control={<Radio color="primary" />}
+                  label={scenario.name}
+                />
+              )}
+            </RadioGroup>
+          </FormControl>
+        }
       </Grid>
     </div>
   );
