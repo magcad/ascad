@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
-import { Button, createStyles, Grid, Paper, makeStyles, Step, StepLabel, Stepper, Theme, Typography } from '@material-ui/core';
+import { Button, createStyles, Grid, Paper, makeStyles, Step, StepLabel, Stepper, Theme, Typography, CircularProgress } from '@material-ui/core';
 import FileDropper from './components/FileDropper';
 import Scenarios from './components/Scenarios';
 import { Scenario } from './models/scenario';
+import Converter from './components/Converter';
 
 const getSteps = (): string[] => {
   return ['Select CAD file(s)', 'Choose scenario', 'Get your files'];
@@ -85,7 +86,10 @@ function App() {
       case 1:
         return <Scenarios onSelectedScenarioChange={handleSelectedScenarioChange} />
       case 2:
-        return <div>download files</div>;
+        if (files !== null && selectedScenario !== null) {
+          return <Converter files={files} scenario={selectedScenario} />
+        }
+        return <CircularProgress />
       default:
         return <div>Unknown stepIndex</div>;
     }

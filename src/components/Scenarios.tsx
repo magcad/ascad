@@ -30,7 +30,7 @@ const Scenarios: React.FC<ScenariosProps> = ({
   }, []);
   
   useEffect(() => {
-    axiosInstance.get('/scenarios').then(async (response) => {
+    axiosInstance.get('/scenarios').then((response) => {
       if (response.status === 200) {
         const scenarioListJson = response.data as Scenario[];
         setSenarios(scenarioListJson);
