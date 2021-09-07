@@ -1,7 +1,4 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
-import axiosInstance from '../axiosInstance';
-import { CONSTANTS } from '../constants';
 import { Scenario } from '../models/scenario';
 import FileUploader from './FileUploader';
 import Processes from './Processes';

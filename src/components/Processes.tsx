@@ -1,5 +1,5 @@
 import { Typography } from '@material-ui/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Scenario } from '../models/scenario';
 import ProcessHandler from './ProcessHandler';
 
