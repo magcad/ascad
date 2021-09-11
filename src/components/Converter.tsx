@@ -20,7 +20,7 @@ const Converter: React.FC<ConverterProps> = ({
   return (
     <>
       <FileUploader files={files} onFileUploadEnd={handleFileUploadEnd} />
-      {uploadedModelsIds !== null ?
+      {uploadedModelsIds !== null && uploadedModelsIds.length === files.length ? // Tous les fichiers uploadés doivent passer
         <Processes
           scenario={scenario}
           modelIds={uploadedModelsIds}

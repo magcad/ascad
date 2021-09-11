@@ -17,14 +17,17 @@ const FileUploader: React.FC<FileUploaderProps> = ({
     setUploadedFiles((upFiles) => upFiles + 1);
   }, []);
 
-  const handleValidUpload = useCallback((modelId) => {
-    const nModelIds = modelIds.slice();
-    nModelIds.push(modelId);
-    setModelIds(nModelIds);
-  }, []);
+  const handleValidUpload = (modelId: number) => {
+    setModelIds((oldModelIds) => {
+      // Inutile ?
+      const nOldModelIds = oldModelIds.slice();
+      nOldModelIds.push(modelId);
+      return nOldModelIds;
+    });
+  };
 
   useEffect(() => {
-    if (uploadedFiles >= files.length && modelIds.length > 0) {
+    if (modelIds.length >= files.length) {
       onFileUploadEnd?.call(null, modelIds);
     }
   }, [uploadedFiles, modelIds]);

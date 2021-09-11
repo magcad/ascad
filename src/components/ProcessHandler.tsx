@@ -81,7 +81,7 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          id="log1"
+          id={modelId.toString()}
         >
           See Log
         </AccordionSummary>
