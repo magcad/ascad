@@ -90,7 +90,7 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
           </Button>
           : null
         }
-      <Accordion>
+      <Accordion className="log-accordion">
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           id={modelId.toString()}
