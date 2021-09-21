@@ -78,6 +78,18 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
       <Typography>
         Processing model #{modelId} with scenario {scenario.name}
       </Typography>
+      {isDone ?
+          <Button 
+            className={classes.downloadButton}
+            onClick={handleDownload}
+            variant="contained"
+            color="primary"
+            size="large"
+          >
+            Download
+          </Button>
+          : null
+        }
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
@@ -92,18 +104,6 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
             </code>
           </pre>
         </AccordionDetails>
-        {isDone ?
-          <Button 
-            className={classes.downloadButton}
-            onClick={handleDownload}
-            variant="contained"
-            color="primary"
-            size="large"
-          >
-            Download
-          </Button>
-          : null
-        }
       </Accordion>
     </>
   );
