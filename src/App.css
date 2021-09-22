@@ -1,4 +1,4 @@
 .log-accordion {
-  max-width: 80%;
-  overflow-x: scroll;
+  word-wrap: break-word;
+  white-space: pre-wrap;
 }
