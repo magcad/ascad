@@ -45,10 +45,6 @@ function App() {
     setActiveStep((previousStep) => previousStep + 1);
   }
 
-  const handleBack = () => {
-    setActiveStep((previousStep) => previousStep - 1);
-  }
-
   const handleReset = () => {
     setActiveStep(0);
   }
@@ -67,6 +63,8 @@ function App() {
         return (files !== null && files.length > 0);
       case 1:
         return selectedScenario !== null;
+      case 2:
+        return false;
       default:
         return true;
     }
@@ -149,15 +147,8 @@ function App() {
               Restart
             </Button>
           ) : (
+            activeStep === steps.length - 1 ?
               <div>
-                <Button
-                  disabled={activeStep === 0}
-                  size="large"
-                  onClick={handleBack}
-                  className={classes.backButton}
-                >
-                  Back
-                </Button>
                 <Button
                   variant="contained"
                   color="primary"
@@ -165,10 +156,10 @@ function App() {
                   onClick={handleNext}
                   disabled={!canProceedToNextStep()}
                 >
-                  {activeStep === steps.length - 1 ? 'Finish' : 'Next'}
+                  Next
                 </Button>
               </div>
-          )}
+            : null)}
         </Grid>
       </Paper>
     </Grid>
