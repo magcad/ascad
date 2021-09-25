@@ -1,4 +1,4 @@
-import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles, makeStyles, Theme, Typography } from '@material-ui/core';
+import { Accordion, AccordionDetails, AccordionSummary, Button, createStyles, Grid, makeStyles, Theme, Typography } from '@material-ui/core';
 import { ExpandMore as ExpandMoreIcon } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
 import axiosInstance from '../axiosInstance';
@@ -75,21 +75,33 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
 
   return (
     <>
-      <Typography>
-        Processing model #{modelId} with scenario {scenario.name}
-      </Typography>
-      {isDone ?
-          <Button 
-            className={classes.downloadButton}
-            onClick={handleDownload}
-            variant="contained"
-            color="primary"
-            size="large"
-          >
-            Download
-          </Button>
+      <Grid
+        container
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Grid item>
+          <Typography>
+            Processing model #{modelId} with scenario {scenario.name}
+          </Typography>
+        </Grid>
+        {isDone ?
+          <Grid item>
+            <Button 
+              className={classes.downloadButton}
+              onClick={handleDownload}
+              variant="contained"
+              color="primary"
+              size="large"
+            >
+              Download
+            </Button>
+          </Grid>
           : null
         }
+      </Grid>
+
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}

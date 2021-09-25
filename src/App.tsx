@@ -147,7 +147,7 @@ function App() {
               Restart
             </Button>
           ) : (
-            activeStep === steps.length - 1 ?
+            activeStep !== steps.length - 1 ?
               <div>
                 <Button
                   variant="contained"
