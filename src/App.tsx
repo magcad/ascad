@@ -63,10 +63,8 @@ function App() {
         return (files !== null && files.length > 0);
       case 1:
         return selectedScenario !== null;
-      case 2:
-        return false;
       default:
-        return true;
+        return false;
     }
   }
 
