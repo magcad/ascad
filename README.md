@@ -1,2 +1,0 @@
-# CADO Web Client
-
