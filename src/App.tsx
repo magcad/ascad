@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme: Theme) =>
   }),
 );
 
-function App() {
+function App(): JSX.Element {
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [files, setFiles] = useState<File[] | null>(null);

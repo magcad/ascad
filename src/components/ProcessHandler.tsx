@@ -25,7 +25,8 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
 }) => {
   const classes = useStyles();
   const [process, setProcess] = useState<Process | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  // TODO : Gérer les erreurs (snackbar?)
+  //const [error, setError] = useState<string | null>(null);
   const [processResult, setProcessResult] = useState<Process | null>(null);
   const [isDone, setIsDone] = useState(false)
 
@@ -63,13 +64,13 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
       .post('/processes', JSON.stringify(Object.fromEntries(formData)))
       .then((response) => {
         if (response.status !== 201) {
-          setError(`${response.status} ${response.statusText}`);
+          // setError(`${response.status} ${response.statusText}`);
         } else {
           setProcess(response.data as Process);
         }
       })
-      .catch((error) => {
-        setError(error.message);
+      .catch(() => { // error parameter
+        // setError(error.message);
       })
   }, []);
 
