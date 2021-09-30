@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme: Theme) =>
     downloadButton: {
       margin: theme.spacing(1),
     },
+    logAccordion: {
+      wordWrap: "break-word",
+      whiteSpace: "pre-wrap",
+      wordBreak: "break-all",
+    },
   }),
 );
 
@@ -111,7 +116,7 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
           See Log
         </AccordionSummary>
         <AccordionDetails>
-          <pre className="log-accordion">
+          <pre className={classes.logAccordion}>
             <code>
               {processResult?.log.replace(/\r/g, '\n') ?? "..."}
             </code>
