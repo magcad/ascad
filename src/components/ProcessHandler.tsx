@@ -21,11 +21,11 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 type ProcessHandlerProps = {
-  modelId: number;
+  modelUid: string;
   scenario: Scenario;
 }
 const ProcessHandler: React.FC<ProcessHandlerProps> = ({
-  modelId,
+  modelUid,
   scenario,
 }) => {
   const classes = useStyles();
@@ -39,7 +39,7 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
     if (processResult === null) 
       return;
 
-    const url = `${CONSTANTS.API_BASE_URL}/models/download/${processResult.modelOutFK}`;
+    const url = `${CONSTANTS.API_BASE_URL}/models/download/${processResult.modelOutUid}`;
     const a = document.createElement('a');
     a.href = url;
     a.download = url;
@@ -50,7 +50,7 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
 
   useInterval(() => {
     axiosInstance
-      .get(`/processes/${process?.id ?? 0}`)
+      .get(`/processes/${process?.uid ?? 0}`)
       .then((response) => {
         setProcessResult(response.data as Process);
         if (processResult?.status == 2) {
@@ -61,7 +61,7 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
 
   useEffect(() => {
     const formData = new FormData();
-    formData.append('modelInFK', modelId.toString());
+    formData.append('modelInUid', modelUid.toString());
     formData.append('scenarioFK', scenario.id.toString());
     formData.append('userFK', CONSTANTS.GENERIC_USER_KEY.toString());
 
@@ -89,7 +89,7 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
       >
         <Grid item>
           <Typography>
-            Processing model #{modelId} with scenario {scenario.name}
+            Processing model #{modelUid} with scenario {scenario.name}
           </Typography>
         </Grid>
         {isDone ?
@@ -111,7 +111,7 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
       <Accordion>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          id={modelId.toString()}
+          id={modelUid.toString()}
         >
           See Log
         </AccordionSummary>

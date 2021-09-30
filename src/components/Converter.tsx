@@ -11,9 +11,9 @@ const Converter: React.FC<ConverterProps> = ({
   files,
   scenario,
 }) => {
-  const [uploadedModelsIds, setUploadedModelsIds] = useState<number[] | null>(null);
+  const [uploadedModelsIds, setUploadedModelsIds] = useState<string[] | null>(null);
 
-  const handleFileUploadEnd = (modelIds: number[]) => {
+  const handleFileUploadEnd = (modelIds: string[]) => {
     setUploadedModelsIds(modelIds);
   }
 

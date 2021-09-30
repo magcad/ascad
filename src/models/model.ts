@@ -1,8 +1,7 @@
 export interface Model {
-  id: number;
+  uid: string;
   fileName: string;
   processed: boolean;
-  filePath: string;
   fileLength: number;
   userFK: number;
   parentProcessId: number;

@@ -4,20 +4,20 @@ import FileUpload from './FileUpload';
 
 type FileUploaderProps = {
   files: File[],
-  onFileUploadEnd?: (validModelsIds: number[]) => void;
+  onFileUploadEnd?: (validModelsIds: string[]) => void;
 }
 const FileUploader: React.FC<FileUploaderProps> = ({
   files,
   onFileUploadEnd,
 }) => {
   const [uploadedFiles, setUploadedFiles] = useState(0);
-  const [modelIds, setModelIds] = useState<number[]>([]);
+  const [modelIds, setModelIds] = useState<string[]>([]);
 
   const handleUploadEnd = useCallback(() => {
     setUploadedFiles((upFiles) => upFiles + 1);
   }, []);
 
-  const handleValidUpload = (modelId: number) => {
+  const handleValidUpload = (modelId: string) => {
     setModelIds((oldModelIds) => {
       // Inutile ?
       const nOldModelIds = oldModelIds.slice();

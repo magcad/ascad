@@ -5,7 +5,7 @@ import ProcessHandler from './ProcessHandler';
 
 type ProcessesProps = {
   scenario: Scenario;
-  modelIds: number[];
+  modelIds: string[];
 }
 const Processes: React.FC<ProcessesProps> = ({
   scenario,
@@ -20,7 +20,7 @@ const Processes: React.FC<ProcessesProps> = ({
       {(modelIds.map((modelId, i) =>
         <ProcessHandler
           key={i}
-          modelId={modelId}
+          modelUid={modelId}
           scenario={scenario}
         />
       ))}

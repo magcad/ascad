@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) =>
 type FileUploadProps = {
   file: File;
   onEnd?: () => void;
-  onValidUpload?: (modelId: number) => void;
+  onValidUpload?: (modelId: string) => void;
 }
 const FileUpload: React.FC<FileUploadProps> = ({
   file,
@@ -75,7 +75,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
           setError(`${response.status} ${response.statusText}`);
         } else {
           const model = response.data as Model;
-          onValidUpload?.call(null, model.id);
+          onValidUpload?.call(null, model.uid);
         }
       })
       .catch(error => {

@@ -1,7 +1,7 @@
 export interface Process {
-  id: number;
-  modelInFK: number;
-  modelOutFK: number;
+  uid: string;
+  modelInUid: string;
+  modelOutUid: string;
   scenarioFK: number;
   startTime: Date;
   endTime: Date;
