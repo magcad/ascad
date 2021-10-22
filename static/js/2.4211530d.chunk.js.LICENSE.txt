@@ -5,6 +5,18 @@ object-assign
 */
 
 /**
+   * @license
+   * Copyright 2019 Google LLC
+   * SPDX-License-Identifier: Apache-2.0
+   */
+
+/**
+   * @license
+   * Copyright 2020 Google LLC
+   * SPDX-License-Identifier: Apache-2.0
+   */
+
+/**
  * A better abstraction over CSS.
  *
  * @copyright Oleg Isonen (Slobodskoi) / Isonen 2014-present
