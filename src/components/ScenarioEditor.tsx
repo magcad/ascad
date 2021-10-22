@@ -1,6 +1,5 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { BlocklyWorkspace } from 'react-blockly';
-import Blockly from "blockly";
 
 const ASCAD_TOOLBOX = {
   kind: "categoryToolbox",
