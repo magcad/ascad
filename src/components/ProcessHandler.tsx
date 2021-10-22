@@ -92,7 +92,6 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
             Processing model #{modelUid} with scenario {scenario.name}
           </Typography>
         </Grid>
-        {isDone ?
           <Grid item>
             <Button 
               className={classes.downloadButton}
@@ -100,12 +99,15 @@ const ProcessHandler: React.FC<ProcessHandlerProps> = ({
               variant="contained"
               color="primary"
               size="large"
+              disabled={!isDone}
             >
-              Download
+              {isDone ?
+              "Download"
+              :
+              "Processing..."
+              }
             </Button>
           </Grid>
-          : null
-        }
       </Grid>
 
       <Accordion>
