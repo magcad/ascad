@@ -14,7 +14,7 @@ const FileDropper: React.FC<FileDropperProps> = ({
   
   return (
     <DropzoneArea
-      maxFileSize={1e9}
+      maxFileSize={2e9}
       filesLimit={10}
       dropzoneText={"Drag and drop a STEP file here or click"}
       onChange={handleChange}
